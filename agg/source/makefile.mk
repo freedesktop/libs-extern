@@ -37,40 +37,40 @@ ENABLE_EXCEPTIONS=TRUE
 # --- Settings ----------------------------------
 
 .INCLUDE :  	settings.mk
-
+.IF "$(L10N_framework)"==""
 # don't link default libraries from sal
 UWINAPILIB=
 LIBSALCPPRT=
 # --- Files -------------------------------------
 
 SLOFILES= \
-        $(SLO)$/agg_arc.obj						\
-        $(SLO)$/agg_arrowhead.obj				\
-        $(SLO)$/agg_bezier_arc.obj				\
-        $(SLO)$/agg_bspline.obj					\
-        $(SLO)$/agg_curves.obj					\
-        $(SLO)$/agg_embedded_raster_fonts.obj	\
-        $(SLO)$/agg_gsv_text.obj				\
-        $(SLO)$/agg_image_filters.obj			\
-        $(SLO)$/agg_line_aa_basics.obj			\
-        $(SLO)$/agg_line_profile_aa.obj			\
-        $(SLO)$/agg_path_storage.obj			\
-        $(SLO)$/agg_rasterizer_scanline_aa.obj	\
-        $(SLO)$/agg_rounded_rect.obj			\
-        $(SLO)$/agg_sqrt_tables.obj				\
-        $(SLO)$/agg_trans_affine.obj			\
-        $(SLO)$/agg_trans_double_path.obj		\
-        $(SLO)$/agg_trans_single_path.obj		\
-        $(SLO)$/agg_trans_warp_magnifier.obj	\
-        $(SLO)$/agg_vcgen_bspline.obj			\
-        $(SLO)$/agg_vcgen_contour.obj			\
-        $(SLO)$/agg_vcgen_dash.obj				\
-        $(SLO)$/agg_vcgen_markers_term.obj		\
-        $(SLO)$/agg_vcgen_smooth_poly1.obj		\
-        $(SLO)$/agg_vcgen_stroke.obj			\
-        $(SLO)$/agg_vpgen_clip_polygon.obj		\
-        $(SLO)$/agg_vpgen_clip_polyline.obj		\
-        $(SLO)$/agg_vpgen_segmentator.obj
+		$(SLO)$/agg_arc.obj						\
+		$(SLO)$/agg_arrowhead.obj				\
+		$(SLO)$/agg_bezier_arc.obj				\
+		$(SLO)$/agg_bspline.obj					\
+		$(SLO)$/agg_curves.obj					\
+		$(SLO)$/agg_embedded_raster_fonts.obj	\
+		$(SLO)$/agg_gsv_text.obj				\
+		$(SLO)$/agg_image_filters.obj			\
+		$(SLO)$/agg_line_aa_basics.obj			\
+		$(SLO)$/agg_line_profile_aa.obj			\
+		$(SLO)$/agg_path_storage.obj			\
+		$(SLO)$/agg_rasterizer_scanline_aa.obj	\
+		$(SLO)$/agg_rounded_rect.obj			\
+		$(SLO)$/agg_sqrt_tables.obj				\
+		$(SLO)$/agg_trans_affine.obj			\
+		$(SLO)$/agg_trans_double_path.obj		\
+		$(SLO)$/agg_trans_single_path.obj		\
+		$(SLO)$/agg_trans_warp_magnifier.obj	\
+		$(SLO)$/agg_vcgen_bspline.obj			\
+		$(SLO)$/agg_vcgen_contour.obj			\
+		$(SLO)$/agg_vcgen_dash.obj				\
+		$(SLO)$/agg_vcgen_markers_term.obj		\
+		$(SLO)$/agg_vcgen_smooth_poly1.obj		\
+		$(SLO)$/agg_vcgen_stroke.obj			\
+		$(SLO)$/agg_vpgen_clip_polygon.obj		\
+		$(SLO)$/agg_vpgen_clip_polyline.obj		\
+		$(SLO)$/agg_vpgen_segmentator.obj
 
 SHL1TARGET = $(TARGET)$(DLLPOSTFIX)
 SHL1IMPLIB = i$(TARGET)
@@ -79,14 +79,17 @@ SHL1DEF = $(MISC)$/$(SHL1TARGET).def
 DEF1NAME = $(SHL1TARGET)
 
 DEF1DEPN	=$(MISC)$/$(SHL1TARGET).flt \
-        $(LIB1TARGET)
+		$(LIB1TARGET)
 
 DEF1DES		=agg
 DEFLIB1NAME	=$(TARGET)
 
 # --- Targets ----------------------------------
 
+.ENDIF # L10N_framework
 .INCLUDE : target.mk
-
+.IF "$(L10N_framework)"==""
 $(MISC)$/$(SHL1TARGET).flt : makefile.mk $(TARGET).flt
-    @$(TYPE) $(TARGET).flt > $@
+	@$(TYPE) $(TARGET).flt > $@
+
+.ENDIF # L10N_framework
