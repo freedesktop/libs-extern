@@ -42,12 +42,12 @@ TARGET=openssl
 
 .IF "$(SYSTEM_OPENSSL)" == "YES"
 @all:
-    @echo "Using system openssl...."
+	@echo "Using system openssl...."
 .ENDIF
 
 .IF "$(DISABLE_OPENSSL)" == "TRUE"
 @all:
-    @echo "openssl disabled...."
+	@echo "openssl disabled...."
 .ENDIF
 
 OPENSSL_NAME=openssl-0.9.8k
@@ -66,41 +66,41 @@ OUT2LIB += libcrypto.*
 OUT2INC += include/openssl/*
 
 .IF "$(OS)" == "LINUX" || "$(OS)" == "FREEBSD"
-    PATCH_FILES=openssllnx.patch
-    ADDITIONAL_FILES:= \
-        libcrypto_OOo_0_9_8k.map \
-        libssl_OOo_0_9_8k.map
-    .IF "$(CPU)" == "I"
-        CONFIGURE_ACTION=Configure linux-elf
-    .ELIF "$(BUILD64)" == "1"
-        CONFIGURE_ACTION=Configure linux-generic64
-    .ELSE
-        CONFIGURE_ACTION=Configure linux-generic32
-    .ENDIF
-    # if you build openssl as shared library you have to patch the Makefile.Shared "LD_LIBRARY_PATH=$$LD_LIBRARY_PATH \"
-    #BUILD_ACTION=make 'SHARED_LDFLAGS=-Wl,--version-script=./lib$$(SHLIBDIRS)_OOo_0_9_8e.map'
+	PATCH_FILES=openssllnx.patch
+	ADDITIONAL_FILES:= \
+		libcrypto_OOo_0_9_8k.map \
+		libssl_OOo_0_9_8k.map
+	.IF "$(CPU)" == "I"
+		CONFIGURE_ACTION=Configure linux-elf
+	.ELIF "$(BUILD64)" == "1"
+		CONFIGURE_ACTION=Configure linux-generic64
+	.ELSE
+		CONFIGURE_ACTION=Configure linux-generic32
+	.ENDIF
+	# if you build openssl as shared library you have to patch the Makefile.Shared "LD_LIBRARY_PATH=$$LD_LIBRARY_PATH \"
+	#BUILD_ACTION=make 'SHARED_LDFLAGS=-Wl,--version-script=./lib$$(SHLIBDIRS)_OOo_0_9_8e.map'
 .ENDIF
 
 .IF "$(OS)" == "SOLARIS"
-    PATCH_FILES=opensslsol.patch
-    ADDITIONAL_FILES:= \
-        libcrypto_OOo_0_9_8k.map \
-        libssl_OOo_0_9_8k.map
-    #BUILD_ACTION=make 'SHARED_LDFLAGS=-G -dy -z text -M./lib$$$$$$$$(SHLIBDIRS)_OOo_0_9_8e.map'
+	PATCH_FILES=opensslsol.patch
+	ADDITIONAL_FILES:= \
+		libcrypto_OOo_0_9_8k.map \
+		libssl_OOo_0_9_8k.map
+	#BUILD_ACTION=make 'SHARED_LDFLAGS=-G -dy -z text -M./lib$$$$$$$$(SHLIBDIRS)_OOo_0_9_8e.map'
 
-    # Use BUILD64 when 1 to select new specific 64bit Configurations if necessary
+	# Use BUILD64 when 1 to select new specific 64bit Configurations if necessary
 
-    .IF "$(CPUNAME)" == "INTEL" # Solaris INTEL
-        .IF "$(CPU)" == "X"
-           CONFIGURE_ACTION=Configure solaris64-x86_64-cc
-        .ELSE
-           CONFIGURE_ACTION=Configure solaris-x86-cc
-        .ENDIF
-    .ELIF "$(CPU)" == "U" # Solaris SPARC
-       CONFIGURE_ACTION=Configure solaris64-sparcv9-cc
-    .ELSE
-       CONFIGURE_ACTION=Configure solaris-sparcv9-cc
-    .ENDIF
+	.IF "$(CPUNAME)" == "INTEL" # Solaris INTEL
+		.IF "$(CPU)" == "X"
+		   CONFIGURE_ACTION=Configure solaris64-x86_64-cc
+		.ELSE
+		   CONFIGURE_ACTION=Configure solaris-x86-cc
+		.ENDIF
+	.ELIF "$(CPU)" == "U" # Solaris SPARC
+	   CONFIGURE_ACTION=Configure solaris64-sparcv9-cc
+	.ELSE
+	   CONFIGURE_ACTION=Configure solaris-sparcv9-cc
+	.ENDIF
 .ENDIF
 
 .IF "$(OS)" == "WNT"
@@ -129,31 +129,35 @@ OUT2BIN += out/libeay32.dll
 .ENDIF
 .ELSE
 
-        PATCH_FILES=openssl.patch
-        .IF "$(MAKETARGETS)" == ""
-            # The env. vars CC and PERL are used by nmake, and nmake insists on '\'s
-            # If WRAPCMD is set it is prepended before the compiler, don't touch that.
-            .IF "$(WRAPCMD)"==""
-                CC!:=$(subst,/,\ $(normpath,1 $(CC)))
-                .EXPORT : CC
-            .ENDIF
-            PERL_bak:=$(PERL)
-            PERL!:=$(subst,/,\ $(normpath,1 $(PERL)))
-            .EXPORT : PERL
-            PERL!:=$(PERL_bak)
-        .ENDIF
+		PATCH_FILES=openssl.patch
+		.IF "$(MAKETARGETS)" == ""
+			# The env. vars CC and PERL are used by nmake, and nmake insists on '\'s
+			# If WRAPCMD is set it is prepended before the compiler, don't touch that.
+			.IF "$(WRAPCMD)"==""
+				# relace / with \ first word only
+				cc_first_repl = $(subst,/,\ $(normpath,1 $(CC:1)))
+				cc_first = $(normpath,1 $(CC:1))
+				CC!:=$(subst,$(cc_first),$(cc_first_repl) $(normpath,1 $(CC)))
+#				CC!:=$(subst,/,\ $(normpath,1 $(CC)))
+				.EXPORT : CC
+			.ENDIF
+			PERL_bak:=$(PERL)
+			PERL!:=$(subst,/,\ $(normpath,1 $(PERL)))
+			.EXPORT : PERL
+			PERL!:=$(PERL_bak)
+		.ENDIF
 
-        #CONFIGURE_ACTION=cmd /c $(PERL:s!\!/!) configure
-        CONFIGURE_ACTION=$(PERL) configure
-        CONFIGURE_FLAGS=VC-WIN32
-        BUILD_ACTION=cmd /c "ms$(EMQ)\do_ms.bat $(subst,/,\ $(normpath,1 $(PERL)))" && nmake -f ms/ntdll.mak
+		#CONFIGURE_ACTION=cmd /c $(PERL:s!\!/!) configure
+		CONFIGURE_ACTION=$(PERL) configure
+		CONFIGURE_FLAGS=VC-WIN32
+		BUILD_ACTION=cmd /c "ms$(EMQ)\do_ms.bat $(subst,/,\ $(normpath,1 $(PERL)))" && nmake -f ms/ntdll.mak
 
-        OUT2LIB = out32dll$/ssleay32.lib
-        OUT2LIB += out32dll$/libeay32.lib
-        OUT2BIN = out32dll$/ssleay32.dll
-        OUT2BIN += out32dll$/libeay32.dll
-        OUT2INC = inc32$/openssl$/*
-    .ENDIF
+		OUT2LIB = out32dll$/ssleay32.lib
+		OUT2LIB += out32dll$/libeay32.lib
+		OUT2BIN = out32dll$/ssleay32.dll
+		OUT2BIN += out32dll$/libeay32.dll
+		OUT2INC = inc32$/openssl$/*
+	.ENDIF
 .ENDIF
 
 #set INCLUDE=D:\sol_temp\n\msvc7net3\PlatformSDK\include;D:\sol_temp\n\msvc7net3\include\ && set path=%path%;D:\sol_temp\r\btw\SRC680\perl\bin &&
