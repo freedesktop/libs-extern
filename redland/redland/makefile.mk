@@ -40,8 +40,8 @@ TARGET=so_redland
 
 .IF "$(SYSTEM_REDLAND)" == "YES"
 all:
-    @echo "An already available installation of Redland RDF should exist on your system."
-    @echo "Therefore the version provided here does not need to be built in addition."
+	@echo "An already available installation of Redland RDF should exist on your system."
+	@echo "Therefore the version provided here does not need to be built in addition."
 .ENDIF
 
 # --- Files --------------------------------------------------------
@@ -107,8 +107,8 @@ CFLAGS=-m64
 .ENDIF
 
 # NB: SOLARDIR before SYSBASE, because linux SYSBASE contains obsolete libcrypto
-CPPFLAGS+:=-I$(SOLARINCDIR)$/external
-LDFLAGS+:=-L$(SOLARLIBDIR)
+CPPFLAGS+:=-I$(PWD)$/$(INCCOM) -I$(SOLARINCDIR)$/external
+LDFLAGS+:=-L$(PWD)$/$(LB) -L$(SOLARLIBDIR)
 
 .IF "$(SYSBASE)"!=""
 CPPFLAGS+:=-I$(SYSBASE)$/usr$/include
