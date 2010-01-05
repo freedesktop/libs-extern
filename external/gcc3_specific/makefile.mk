@@ -24,16 +24,16 @@ MINGWGXXDLL=$(BIN)$/$(MINGW_GXXDLL)
 all : $(BIN)$/mingwm10.dll $(MINGWGCCDLL) $(MINGWGXXDLL)
 
 $(BIN)$/mingwm10.dll :
-    $(COPY) -p $(COMPATH)$/bin$/mingwm10.dll $(BIN)$/
+	$(COPY) -p $(COMPATH)$/bin$/mingwm10.dll $(BIN)$/
 
 .IF "$(MINGW_SHARED_GCCLIB)" == "YES"
 $(MINGWGCCDLL) :
-    $(COPY) -p $(COMPATH)$/bin$/$(MINGW_GCCDLL) $(BIN)$/
+	$(COPY) -p $(COMPATH)$/bin$/$(MINGW_GCCDLL) $(BIN)$/
 .ENDIF
 
 .IF "$(MINGW_SHARED_GXXLIB)" == "YES"
 $(MINGWGXXDLL) :
-    $(COPY) -p $(COMPATH)$/bin$/$(MINGW_GXXDLL) $(BIN)$/
+	$(COPY) -p $(COMPATH)$/bin$/$(MINGW_GXXDLL) $(BIN)$/
 .ENDIF
 
 .ENDIF
@@ -43,7 +43,6 @@ $(MINGWGXXDLL) :
 .IF "$(SYSTEM_STDLIBS)" != "YES" && "$(COMID)"=="gcc3"
 
 .IF "$(OS)"!="MACOSX"
-.IF "$(OS)"!="IRIX"
 .IF "$(OS)"!="FREEBSD"
 
 .EXPORT : CC
@@ -58,7 +57,6 @@ $(LB)$/libgcc_s.so.1 :
        $(GCCINSTLIB) libgcc_s.so.1 $(LB)
 
 .ENDIF
-.ENDIF 
 .ENDIF 
 
 .ENDIF
