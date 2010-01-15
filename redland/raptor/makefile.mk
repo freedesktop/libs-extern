@@ -40,8 +40,8 @@ TARGET=so_raptor
 
 .IF "$(SYSTEM_REDLAND)" == "YES"
 all:
-    @echo "An already available installation of Redland RDF should exist on your system."
-    @echo "Therefore the version provided here does not need to be built in addition."
+	@echo "An already available installation of Redland RDF should exist on your system."
+	@echo "Therefore the version provided here does not need to be built in addition."
 .ENDIF
 
 # --- Files --------------------------------------------------------
@@ -51,6 +51,7 @@ all:
 RAPTORVERSION=$(RAPTOR_MAJOR).4.18
 
 TARFILE_NAME=raptor-$(RAPTORVERSION)
+TARFILE_MD5=284e768eeda0e2898b0d5bf7e26a016e
 
 ADDITIONAL_FILES=src/makefile.mk src/raptor_config.h
 

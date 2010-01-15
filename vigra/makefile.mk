@@ -44,13 +44,14 @@ TARGET=vigra
 
 .IF "$(SYSTEM_VIGRA)" == "YES"
 all:
-    @echo "An already available installation of vigra should exist on your system."        
-    @echo "Therefore the version provided here does not need to be built in addition."
+	@echo "An already available installation of vigra should exist on your system."        
+	@echo "Therefore the version provided here does not need to be built in addition."
 .ELSE
 
 # --- Files --------------------------------------------------------
 
 TARFILE_NAME=vigra1.4.0
+TARFILE_MD5=ea91f2fb4212a21d708aced277e6e85a
 PATCH_FILES=$(TARFILE_NAME).patch
 
 CONFIGURE_DIR=

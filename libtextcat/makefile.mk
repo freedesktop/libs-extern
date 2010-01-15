@@ -41,6 +41,7 @@ TARGET=libtextcat
 # --- Files --------------------------------------------------------
 
 TARFILE_NAME=libtextcat-2.2
+TARFILE_MD5=128cfc86ed5953e57fe0f5ae98b62c2e
 TARFILE_ROOTDIR=libtextcat-2.2
 
 PATCH_FILES=libtextcat-2.2.patch
@@ -49,9 +50,9 @@ PATCH_FILES=libtextcat-2.2.patch
 ADDITIONAL_FILES= \
                 src$/utf8misc.h \
                 src$/utf8misc.c \
-                src$/win32_config.h \
-                src$/makefile.mk \
-                src$/libtextcat.map
+				src$/win32_config.h \
+				src$/makefile.mk \
+				src$/libtextcat.map
 
 .IF "$(GUI)"=="UNX"
 #CONFIGURE_DIR=$(BUILD_DIR)
@@ -73,10 +74,10 @@ BUILD_ACTION=cd src && dmake $(MAKEMACROS)
 
 
 OUT2INC= \
-    $(BUILD_DIR)$/src$/config.h \
-    $(BUILD_DIR)$/src$/common.h \
-    $(BUILD_DIR)$/src$/fingerprint.h \
-    $(BUILD_DIR)$/src$/textcat.h \
+	$(BUILD_DIR)$/src$/config.h \
+	$(BUILD_DIR)$/src$/common.h \
+	$(BUILD_DIR)$/src$/fingerprint.h \
+	$(BUILD_DIR)$/src$/textcat.h \
     $(BUILD_DIR)$/src$/wg_mempool.h
 
 

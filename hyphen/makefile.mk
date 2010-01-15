@@ -41,6 +41,7 @@ TARGET=hyphen
 # --- Files --------------------------------------------------------
 
 TARFILE_NAME=hyphen-2.4
+TARFILE_MD5=d0b5af6e408b8d2958f3d83b5244f5e8
 
 ADDITIONAL_FILES += makefile.mk
 
@@ -75,7 +76,7 @@ CONFIGURE_FLAGS+=CFLAGS='$(LCL_CONFIGURE_CFLAGS)'
 BUILD_ACTION=make hyph_en_US.dic
 .ELIF "$(SYSTEM_HYPH)" == "YES" && "$(WITH_MYSPELL_DICTS)" != "YES"
 @all:
-    echo "Nothing to do here."
+	echo "Nothing to do here."
 .ELSE
 BUILD_ACTION=make
 OUT2INC += hyphen.h 

@@ -42,10 +42,11 @@ TARGET=wpd
 
 .IF "$(SYSTEM_LIBWPD)" == "YES"
 @all:
-    @echo "Using system libwpd..."
+	@echo "Using system libwpd..."
 .ENDIF
 
 TARFILE_NAME=libwpd-0.8.8
+TARFILE_MD5=cd5997284f4ba1e8dde5d1e5869fc342
 PATCH_FILES=$(TARFILE_NAME).diff
 BUILD_ACTION=dmake $(MFLAGS) $(CALLMACROS)
 BUILD_DIR=src$/lib

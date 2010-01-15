@@ -49,17 +49,18 @@ ANT_BUILDFILE=build$/build.xml
 # --- Files --------------------------------------------------------
 
 TARFILE_NAME=hsqldb_$(HSQLDB_VERSION)
+TARFILE_MD5=17410483b5b5f267aa18b7e00b65e6e0
 
 TARFILE_ROOTDIR=hsqldb
 
 CONVERTFILES=build$/build.xml \
-            src$/org$/hsqldb$/persist$/HsqlDatabaseProperties.java \
-            src$/org$/hsqldb$/Library.java
+			src$/org$/hsqldb$/persist$/HsqlDatabaseProperties.java \
+			src$/org$/hsqldb$/Library.java
 
 PATCH_FILES=patches$/i96823.patch \
-            patches$/i97032.patch \
-            patches$/i103528.patch \
-            patches$/i104901.patch
+			patches$/i97032.patch \
+			patches$/i103528.patch \
+			patches$/i104901.patch
 
 .IF "$(JAVACISGCJ)"=="yes"
 JAVA_HOME=
