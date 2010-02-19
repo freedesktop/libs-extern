@@ -41,7 +41,7 @@ EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
 
 .IF "$(WITH_MOZILLA)" == "NO"
 @all:
-    @echo "Mozilla disabled -> no nss -> no libxmlsec...."
+	@echo "Mozilla disabled -> no nss -> no libxmlsec...."
 .ENDIF
 
 # --- Files --------------------------------------------------------
@@ -131,6 +131,7 @@ xmlsec_CFLAGS+=$(C_RESTRICTIONFLAGS)
 .ENDIF			# "$(COMNAME)"=="sunpro5"
 .IF "$(EXTRA_CFLAGS)"!=""
 xmlsec_CFLAGS+=$(EXTRA_CFLAGS)
+xmlsec_CPPFLAGS+=$(EXTRA_CFLAGS)
 .ENDIF # "$(EXTRA_CFLAGS)"!=""
 xmlsec_LDFLAGS+=-L$(SYSBASE)$/usr$/lib
 .ELIF "$(OS)"=="MACOSX" # "$(SYSBASE)"!=""
