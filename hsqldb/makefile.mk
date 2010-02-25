@@ -2,13 +2,9 @@
 #
 # DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
 # 
-# Copyright 2008 by Sun Microsystems, Inc.
+# Copyright 2000, 2010 Oracle and/or its affiliates.
 #
 # OpenOffice.org - a multi-platform office productivity suite
-#
-# $RCSfile: makefile.mk,v $
-#
-# $Revision: 1.22 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -53,13 +49,13 @@ TARFILE_NAME=hsqldb_$(HSQLDB_VERSION)
 TARFILE_ROOTDIR=hsqldb
 
 CONVERTFILES=build$/build.xml \
-            src$/org$/hsqldb$/persist$/HsqlDatabaseProperties.java \
-            src$/org$/hsqldb$/Library.java
+			src$/org$/hsqldb$/persist$/HsqlDatabaseProperties.java \
+			src$/org$/hsqldb$/Library.java
 
 PATCH_FILES=patches$/i96823.patch \
-            patches$/i97032.patch \
-            patches$/i103528.patch \
-            patches$/i104901.patch
+			patches$/i97032.patch \
+			patches$/i103528.patch \
+			patches$/i104901.patch
 
 .IF "$(JAVACISGCJ)"=="yes"
 JAVA_HOME=
