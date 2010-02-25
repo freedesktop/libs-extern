@@ -2,13 +2,9 @@
 #
 # DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
 # 
-# Copyright 2008 by Sun Microsystems, Inc.
+# Copyright 2000, 2010 Oracle and/or its affiliates.
 #
 # OpenOffice.org - a multi-platform office productivity suite
-#
-# $RCSfile: makefile.mk,v $
-#
-# $Revision: 1.2 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -45,38 +41,38 @@ ENABLE_EXCEPTIONS=TRUE
 .IF "$(GUIBASE)"!="aqua"
 
 dummy:
-    @echo "Nothing to build for GUIBASE $(GUIBASE)"
+	@echo "Nothing to build for GUIBASE $(GUIBASE)"
 
 .ELSE		# "$(GUIBASE)"!="aqua"
 
 SHL1STDLIBS+= \
-    -framework Cocoa -framework Carbon -framework IOKit
+	-framework Cocoa -framework Carbon -framework IOKit
 
 LIB1FILES+= \
-        $(SLB)$/AppleRemote.lib
+	    $(SLB)$/AppleRemote.lib
 
 SLOFILES=	\
-        $(SLO)$/KeyspanFrontRowControl.obj 	\
-        $(SLO)$/AppleRemote.obj 		\
-        $(SLO)$/RemoteControl.obj		\
-        $(SLO)$/RemoteControlContainer.obj	\
-        $(SLO)$/GlobalKeyboardDevice.obj	\
-        $(SLO)$/HIDRemoteControlDevice.obj	\
-        $(SLO)$/MultiClickRemoteBehavior.obj	\
-        $(SLO)$/RemoteMainController.obj
+		$(SLO)$/KeyspanFrontRowControl.obj 	\
+		$(SLO)$/AppleRemote.obj 		\
+		$(SLO)$/RemoteControl.obj		\
+		$(SLO)$/RemoteControlContainer.obj	\
+		$(SLO)$/GlobalKeyboardDevice.obj	\
+		$(SLO)$/HIDRemoteControlDevice.obj	\
+		$(SLO)$/MultiClickRemoteBehavior.obj	\
+		$(SLO)$/RemoteMainController.obj
 
 SHL1TARGET= $(TARGET)$(DLLPOSTFIX)
 SHL1OBJS= $(SLOFILES)
 
 OUT2INC = \
-        $(BUILDDIR)$/KeyspaFrontRowControl.h	\
-        $(BUILDDIR)$/AppleRemote.h		\
-        $(BUILDDIR)$/RemoteControl.h		\
-        $(BUILDDIR)$/RemoteControlContainer.h	\
-        $(BUILDDIR)$/GlobalKeyboardDevice.h	\
-        $(BUILDDIR)$/HIDRemoteControlDevice.h	\
-        $(BUILDDIR)$/MultiClickRemoteBehavior.h	\
-        $(BUILDDIR)$/RemoteMainController.h
+		$(BUILDDIR)$/KeyspaFrontRowControl.h	\
+		$(BUILDDIR)$/AppleRemote.h		\
+		$(BUILDDIR)$/RemoteControl.h		\
+		$(BUILDDIR)$/RemoteControlContainer.h	\
+		$(BUILDDIR)$/GlobalKeyboardDevice.h	\
+		$(BUILDDIR)$/HIDRemoteControlDevice.h	\
+		$(BUILDDIR)$/MultiClickRemoteBehavior.h	\
+		$(BUILDDIR)$/RemoteMainController.h
 
 
 .ENDIF		# "$(GUIBASE)"!="aqua"
