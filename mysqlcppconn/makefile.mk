@@ -52,7 +52,7 @@ ADDITIONAL_FILES=\
 CONVERTFILES=\
                 cppconn$/build_config.h
 
-PATCH_FILE_NAME=$(TARFILE_NAME).patch
+PATCH_FILES=$(TARFILE_NAME).patch
 
 BUILD_DIR=driver
 BUILD_ACTION = \
