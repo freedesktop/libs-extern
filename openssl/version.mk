@@ -30,8 +30,8 @@
 #*************************************************************************
 
 
-OPENSSL_VERSION=0.9.8g
+OPENSSL_VERSION=0.9.8n
 
 .IF "$(OS)" == "SOLARIS"
-OPENSSL_NAME=openssl-0.9.8l
+OPENSSL_NAME=openssl-0.9.8n
 .ENDIF
