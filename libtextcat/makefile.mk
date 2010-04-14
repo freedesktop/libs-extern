@@ -2,13 +2,9 @@
 #
 # DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
 # 
-# Copyright 2008 by Sun Microsystems, Inc.
+# Copyright 2000, 2010 Oracle and/or its affiliates.
 #
 # OpenOffice.org - a multi-platform office productivity suite
-#
-# $RCSfile: makefile.mk,v $
-#
-# $Revision: 1.8 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -49,9 +45,9 @@ PATCH_FILES=libtextcat-2.2.patch
 ADDITIONAL_FILES= \
                 src$/utf8misc.h \
                 src$/utf8misc.c \
-                src$/win32_config.h \
-                src$/makefile.mk \
-                src$/libtextcat.map
+				src$/win32_config.h \
+				src$/makefile.mk \
+				src$/libtextcat.map
 
 .IF "$(GUI)"=="UNX"
 #CONFIGURE_DIR=$(BUILD_DIR)
@@ -73,10 +69,10 @@ BUILD_ACTION=cd src && dmake $(MAKEMACROS)
 
 
 OUT2INC= \
-    $(BUILD_DIR)$/src$/config.h \
-    $(BUILD_DIR)$/src$/common.h \
-    $(BUILD_DIR)$/src$/fingerprint.h \
-    $(BUILD_DIR)$/src$/textcat.h \
+	$(BUILD_DIR)$/src$/config.h \
+	$(BUILD_DIR)$/src$/common.h \
+	$(BUILD_DIR)$/src$/fingerprint.h \
+	$(BUILD_DIR)$/src$/textcat.h \
     $(BUILD_DIR)$/src$/wg_mempool.h
 
 
