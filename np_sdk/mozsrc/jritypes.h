@@ -88,7 +88,6 @@ typedef enum JRIConstant {
 } JRIConstant;
 
 /* convenience types (these must be distinct struct types for c++ overloading): */
-
 typedef struct jstringArrayStruct*		jstringArray;
 typedef struct jarrayArrayStruct*		jarrayArray;
 
