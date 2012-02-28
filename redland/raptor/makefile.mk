@@ -57,7 +57,8 @@ OOO_PATCH_FILES= \
     $(TARFILE_NAME).patch.ooo_build \
     $(TARFILE_NAME).patch.dmake \
     $(TARFILE_NAME).patch.win32 \
-    raptor-aix.patch
+    raptor-aix.patch \
+    $(TARFILE_NAME).entities.patch
 
 PATCH_FILES=$(OOO_PATCH_FILES)
 
